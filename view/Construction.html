@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Agon-Critic: Construction</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="../Other/favicon.ico">
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="../js/bootstrap.js"></script>
+        <script src="../js/main.js"></script>
+        <script>
+            window.onload = function what(){
+                randPic();
+                $('nav').load('../view/navcontent.html');
+                $('footer').load('../view/footercontent.html')
+            };
+        </script>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-default">
+            </nav>
+        </header>
+        <div id="randPic"></div>
+        <div class="Construction mainDiv">
+            <img src="../images/underConstruction.jpg" alt="Under Construction!"/>
+        </div>
+        <footer class="footer">
+        </footer>
+    </body>
+</html>

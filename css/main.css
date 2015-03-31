@@ -1,0 +1,72 @@
+.randPic { 
+    margin: auto;
+    display: block;
+    text-align: center;
+    width: 100%;
+    height: 200px;
+}
+
+body {
+    background-color: black;
+}
+
+.nav2 {
+    height: 25px;
+    background-color: white;
+    margin:0px auto 0px auto;
+    width: 95%;
+}
+
+.ticker {float: left;}
+.login {float: right;}
+
+.footer {
+    text-align: center;
+    height: 40px;
+    width: 100%;
+    padding-top: 10px;
+    background-color: #fff;
+    color: white;
+}
+
+.TempWelcome {
+    text-align: center;
+    width: 85%;
+    background-color: #fff;
+    margin: 0px auto 15px auto;
+}
+
+.mainDiv {
+    width: 80%;
+    background-color: #fff;
+    margin: 0px auto 15px auto;
+}
+
+.Construction {
+    text-align: center;
+}
+
+.title {
+    text-align: center;
+    font-size: 50px;
+    color: red;
+    font-weight: bolder;
+}
+
+#map-canvas {
+    width: 500px;
+    height: 400px;
+    margin: auto;
+}
+
+table {
+    width: 50%;
+    padding: 10px 10px 5px 5px;
+    margin: auto;
+}
+      
+.cen {text-align:center;}
+.rA {text-align: right;}
+.mA {margin:auto;}
+.indent1 {padding-left: 50px;}
+.indent2 {padding-left: 100px;}
