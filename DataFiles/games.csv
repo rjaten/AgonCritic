@@ -1,16 +1,15 @@
-Game_ID,Name,Genre,Publisher,Developer,Console,ReleaseDate,isNew,Rating
-1,Destiny,,,,,,0,
-2,Hotline Miami 2: Wrong Number,Platformer,,,,,,
-3,Wolfenstein,Action,,,,,,
-4,Call of Duty: Advanced Warfare,FPS,,,,,,
-5,Diablo 3: Reaper of Souls,,,,,,,
-6,Silent Hill 4,,,,,,,
-7,Evolve,,,,,,,
-8,,,,,,,,
-9,,,,,,,,
-10,,,,,,,,
-11,,,,,,,,
-12,,,,,,,,
-13,,,,,,,,
-14,,,,,,,,
-15,,,,,,,,
+1,Destiny,FPS,"Activision, Sony Computer Entertainment",Bungie,"PlayStation 4, PlayStation 3, Xbox One, Xbox 360",2014/09/08,0,4
+2,Hotline Miami 2: Wrong Number,2D Action,"Developer Digital, Spike Chunsoft",Dennaton Games,"PlayStation 4, PlayStation Vita, PlayStation 3, PC ",2015/03/09,1,5
+3,Wolfenstein,Action,Bethesda,MachineGames,"PlayStation 4, PlayStation 3, Xbox 360, Xbox One, PC",2014/05/20,0,4
+4,Call of Duty: Advanced Warfare,FPS,"Activision, Square Enix","Sledgehammer Games, High Moon Studios, Raven Software","PlayStation 4, PlayStation 3, Xbox One, Xbox 360, PC",2014/11/04,0,4
+5,Diablo 3: Reaper of Souls,RPG,"Blizzard Entertainment, Square Enix",Blizzard Entertainment,"PlayStation 4, Xbox One, PlayStation 3, Xbox 360, PC",2014/03/25,0,5
+6,Silent Hill 4: The Room,Horror,Konami,"Konami, Team Silent, Konami Computer Entertainment Tokyo","PlayStation 2, Xbox, PlayStation 3, PC",2004/09/08,0,3
+7,Evolve,FPS,2K Games,Turtle Rock Studios,"PlayStation 4, Xbox One, PC",2015/02/10,1,4
+8,Battlefield 4,FPS,Electronic Arts,EA DICE,"PlayStation 4, PlayStation 3, Xbox 360, Xbox One, PC",2013/10/29,0,4
+9,Bloodborne,RPG,"Sony Computer Entertainment, SCE Japan Studios",From Software,PlayStation 4,2015/03/24,1,5
+10,Halo 4,FPS,Microsoft Studios,"343 Industries, Certain Affinity","Xbox 360, Xbox One",2012/11/06,0,5
+11,Mario Kart 8,Racing,Nintendo,Nintendo Entertainment Analysis & Development,Wii U,2014/05/29,0,3
+12,Call of Duty: Black Ops: Declassified,FPS,Activision,nStigate Games,Playstation Vita,2012/11/13,0,2
+13,Hotline Miami,2D Action,"Developer Digital, Spike Chunsoft",Dennaton Games,"PlayStation 4, PlayStation 3, PlayStation Vita, PC",2012/10/23,0,4
+14,Dragon Age: Inquisition,RPG,Electronic Arts,BioWare,"PlayStation 4, Xbox 360, PlayStation 3, Xbox One, PC",2014/11/18,0,5
+15,Dying Light,Horror,Warner Bros. Interactive Entertainment,Techland,"PlayStation 4, Xbox One, PC",2015/01/27,1,3
