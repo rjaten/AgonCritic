@@ -2,12 +2,8 @@
 	require '../view/headercontent.php';
 ?>
 <div>
-    <table>
-        <thead>
-            <tr>
-                <th><?php echo $row['Name'] ?>  <br></th>
-            </tr>
-        </thead>
+    <h1 class="cen"> <?php echo $row['Name'] ?> </h1><br>
+    <table>           
 	<tbody>	
             <tr>
                 <td>

@@ -6,9 +6,12 @@
             <file>file:/C:/xampp/htdocs/Agon-Critic/controller/controller.php</file>
             <file>file:/C:/xampp/htdocs/Agon-Critic/view/navcontent.html</file>
             <file>file:/C:/xampp/htdocs/Agon-Critic/view/processSignups.php</file>
+            <file>file:/C:/xampp/htdocs/Agon-Critic/view/showGame.php</file>
             <file>file:/C:/xampp/htdocs/Agon-Critic/view/signup.php</file>
             <file>file:/C:/xampp/htdocs/Agon-Critic/model/model.php</file>
+            <file>file:/C:/xampp/htdocs/Agon-Critic/view/showGames.php</file>
             <file>file:/C:/xampp/htdocs/Agon-Critic/view/AgonHome.php</file>
+            <file>file:/C:/xampp/htdocs/Agon-Critic/view/editGame.php</file>
         </group>
     </open-files>
 </project-private>
