@@ -78,6 +78,12 @@ table {
 	width: 100px;
 	font-weight: bold;
 }
+
+.detailForm {
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
 .formRow {
 	padding-bottom: 10px;
 }

@@ -32,6 +32,12 @@
         case 'Signup':
             include '../view/signup.php';
             break;
+        case 'AddGame':
+            addGame();
+            break;
+        case 'ProcessAddEdit':
+            processAddEdit();
+            break;
         case 'ProcessFileUpload': 
             processFileUpload();
             break;
@@ -56,7 +62,69 @@
         default:
             include('../view/AgonHome.php');   // default
     }
-	
+    
+    function addGame() 
+    {
+	$mode = "add";
+	$name = "";
+	$genre = "";
+	$console = "";
+	$developer = "";
+	$publisher = "";
+        $rating = 0;
+	$isnew = "1";
+	$releasedate = "";
+		
+	include '../view/editGame.php';
+    }
+    
+    function processAddEdit() 
+    {
+	print_r($_POST);
+	$name = $_POST['Name'];
+	$genre = $_POST['Genre'];
+        $console = $_POST['Console'];
+        $developer = $_POST['Developer'];
+	$publisher = $_POST['Publisher'];
+	$releasedate = $_POST['ReleaseDate'];
+	$rating = $_POST['Rating'];
+	if (isset($_POST['isNew'])) {
+            $isnew = '1';
+	} else {
+            $isnew = '0';
+	}
+		
+	// Validations
+	$errors = "";
+        if (empty($name) || strlen($name) > 50) {
+            $errors .= "\\n* Name is required and must be no more than 50 characters.";
+        }
+        if (empty($brewery) || strlen($brewery) > 30) {
+            $errors .= "\\n* Brewery is required and must be no more than 30 characters.";
+        }
+        if (empty($style) || strlen($style) > 20) {
+            $errors .= "\\n* Style is required and must be no more than 20 characters.";
+        }
+        if (!empty($alcohol) && !is_numeric($alcohol)) {
+            $errors .= "\\n* Alcohol level must be numeric.  Enter 0 if unknown.";
+        } else if (empty ($alcohol)) {
+            $alcohol = 0;
+        }
+        if (!empty($IBU) && !ctype_digit($IBU)) {
+            $errors .= "\\n* IBU level must be an integer (whole number without decimals).  Enter 0 if unknown.";
+        } else if (empty ($IBU)) {
+            $IBU = 0;
+        }
+        if (!empty($releasedate) && !strtotime($releasedate)) {
+            $errors .= "\\n* You must provide a valid release date.";
+        }
+		
+        if ($errors != "") {
+            include '../view/editGame.php';
+	}
+		
+    }    
+        
     function processFileUpload()
     {
         $directory = "../uploads/";
