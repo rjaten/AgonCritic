@@ -1,14 +1,23 @@
 <?php
 	require '../view/headercontent.php';
 ?>
-<div class="cen detailForm">
+<div class=" detailForm mA">
 	<h1>Add Game</h1>
 
 	<form id="" action="../controller/controller.php?action=ProcessAddEdit" method="post">
+            
+            <input type="hidden" name="GameID" value="<?php echo $gameID ?>" />
+            <input type="hidden" name="Mode" value="<?php echo $mode ?>" />
+            
             <div class="formRow">
 		<label for="Game">Game Name:<span class="required">*</span></label>
 		<input type="text" name="Name" id="" value="<?php echo $name ?>" required 
-                    required size="20" maxlength="50" autofocus/>
+                    size="20" maxlength="50" autofocus/>
+            </div>
+            
+            <div class="formRow mA">
+		<label for="Game">Game Name:<span class="required">*</span></label>
+		<input type="file" name="Picture" id="" value="<?php echo $picture ?>" required/>
             </div>
             
             <div class="formRow">
@@ -30,36 +39,36 @@
             
             <div class="formRow">
                 <label for="Publisher">Console(s):<span class="required">*</span></label>
-		<input type="text" name="Publisher" id="" value="<?php echo $publisher ?>" 
+		<input type="text" name="Console" id="" value="<?php echo $console ?>" 
                     required size="20" maxlength="100"/>
             </div>
             
             <div class="formRow">
-		<label for="Publisher">Publisher(s):<span class="required">*</span></label>
+		<label for="Publisher">Publisher(s):</label>
 		<input type="text" name="Publisher" id="" value="<?php echo $publisher ?>" 
-                    required size="20" maxlength="100"/>
+                    size="20" maxlength="100"/>
             </div>
             
             <div class="formRow">
-		<label for="Developer">Developer(s):<span class="required">*</span></label>
+		<label for="Developer">Developer(s):</label>
 		<input type="text" name="Developer" id="" value="<?php echo $developer ?>" 
-                    required size="20" maxlength="100"/>
+                    size="20" maxlength="100"/>
             </div>
             
             <div class="formRow">
-		<label for="ReleaseDate">Release Date:</label>
-		<input type="date" name="ReleaseDate" id="" value="<?php echo $releasedate ?>"/>
+		<label for="ReleaseDate">Release Date:<span class="required">*</span></label>
+                <input type="date" name="ReleaseDate" id="" value="<?php echo $releasedate ?>" required/>
             </div>
             
             <div class="formRow">
-                <label for="Rating">Our Rating:</label>
-		<input type="number" name="IBU" id="" value="<?php echo $IBU ?>"
-                    min="0" max="100"/>
+                <label for="Rating">Our Rating:<span class="required">*</span></label>
+		<input type="number" name="Rating" id="" value="<?php echo $rating ?>"
+                   required min="0" max="10" step="0.1"/>
             </div>
             
             <div class="formRow">
-		<label for="isNew">Was this game released this month?</label>
-		<input type="checkbox" name="isNew" id="" <?php if ($isnew == '1') echo 'checked' ?> />
+		<label for="isNew">Was this game released this month?<span class="required">*</span></label>
+                <input type="checkbox" name="isNew" id="" <?php if ($isNew == 1)echo 'checked' ?> />
             </div>
             
             <div class="formRow">

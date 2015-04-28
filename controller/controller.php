@@ -1,5 +1,6 @@
 <?php
     require_once '../model/model.php';
+    require_once '../lib/general_fns.php';
 
     if (isset($_POST['action'])) {  // check get and post
         $action = $_POST['action'];
@@ -35,6 +36,12 @@
         case 'AddGame':
             addGame();
             break;
+        case 'EditGame':
+            editGame();
+            break;
+        case 'DeleteGame':
+            deleteGame();
+            break;
         case 'ProcessAddEdit':
             processAddEdit();
             break;
@@ -65,62 +72,124 @@
     
     function addGame() 
     {
-	$mode = "add";
+	$mode = "Add";
+        $gameID = 0;
 	$name = "";
 	$genre = "";
 	$console = "";
 	$developer = "";
 	$publisher = "";
-        $rating = 0;
-	$isnew = "1";
+        $rating = 0.0;
+	$isNew = "1";
 	$releasedate = "";
 		
 	include '../view/editGame.php';
     }
     
+    function deleteGame() {
+		$gameID = $_GET['GameID'];
+		if (!isset($gameID)) {
+			$errorMessage = 'You must provide a GameID to delete.';
+			include '../view/errorMessage.php';
+		} else {
+			$rowCount = deleteAGame($gameID);
+			if ($rowCount != 1) {
+				$errorMessage = "The delete affected $rowCount rows.";
+				include '../view/errorMessage.php';
+			} else {
+				header("Location:../controller/controller.php");
+			}
+		}
+		
+	}
+    
+    function editGame() {
+		$gameID = $_GET['GameID'];
+		if (!isset($gameID)) {
+			$errorMessage = 'You must provide a GameID to display.';
+			include '../view/errorMessage.php';
+		} else {
+			$row = getGame($gameID);
+			if ($row == FALSE) {
+				$errorMessage = 'That game was not found.';
+				include '../view/errorMessage.php';
+			} else {
+				$mode = "Edit";
+				$gameID = $row['GameID'];
+				$name = $row['Name'];
+				$genre = $row['Genre'];
+				$console = $row['Console'];
+				$developer = $row['Developer'];
+				$publisher = $row['Publisher'];
+				$rating = $row['Rating'];
+                                $isNew = $row['isNew'];
+				$releasedate = $row['ReleaseDate'];
+				
+				include '../view/editGame.php';
+			}
+		}		
+	}
+    
     function processAddEdit() 
     {
-	print_r($_POST);
-	$name = $_POST['Name'];
-	$genre = $_POST['Genre'];
-        $console = $_POST['Console'];
-        $developer = $_POST['Developer'];
-	$publisher = $_POST['Publisher'];
-	$releasedate = $_POST['ReleaseDate'];
-	$rating = $_POST['Rating'];
+	
+        $gameID = $_POST['GameID'];
+	$mode = $_POST['Mode'];
+	$name = @$_POST['Name'];
+	$genre = @$_POST['Genre'];
+        $console = @$_POST['Console'];
+        $developer = @$_POST['Developer'];
+	$publisher = @$_POST['Publisher'];
+	$releasedate = @$_POST['ReleaseDate'];
+	$rating = @$_POST['Rating'];
+        $picture = '../images/' . $_POST['Picture'];
 	if (isset($_POST['isNew'])) {
-            $isnew = '1';
+            $isNew = 1;
 	} else {
-            $isnew = '0';
+            $isNew = 0;
 	}
-		
 	// Validations
 	$errors = "";
-        if (empty($name) || strlen($name) > 50) {
+        if (!empty($name) && strlen($name) > 50) 
+        {
             $errors .= "\\n* Name is required and must be no more than 50 characters.";
         }
-        if (empty($brewery) || strlen($brewery) > 30) {
-            $errors .= "\\n* Brewery is required and must be no more than 30 characters.";
+        if (!empty($genre) && strlen($genre) > 100) 
+        {
+            $errors .= "\\n* Genre is required and must be no more than 100 characters.";
         }
-        if (empty($style) || strlen($style) > 20) {
-            $errors .= "\\n* Style is required and must be no more than 20 characters.";
+        if (!empty($console) && strlen($console) > 100) 
+        {
+            $errors .= "\\n* Developer is required and must be no more than 100 characters.";
         }
-        if (!empty($alcohol) && !is_numeric($alcohol)) {
-            $errors .= "\\n* Alcohol level must be numeric.  Enter 0 if unknown.";
-        } else if (empty ($alcohol)) {
-            $alcohol = 0;
+        if (strlen($developer) > 100) 
+        {
+            $errors .= "\\n* Developer must be no more than 100 characters.";
         }
-        if (!empty($IBU) && !ctype_digit($IBU)) {
-            $errors .= "\\n* IBU level must be an integer (whole number without decimals).  Enter 0 if unknown.";
-        } else if (empty ($IBU)) {
-            $IBU = 0;
+        if (strlen($publisher) > 100) 
+        {
+            $errors .= "\\n* Publisher must be no more than 100 characters.";
         }
-        if (!empty($releasedate) && !strtotime($releasedate)) {
+        if (empty($releasedate) || !strtotime($releasedate)) 
+        {
             $errors .= "\\n* You must provide a valid release date.";
         }
-		
+	if (!ctype_digit($rating) > 10 || $rating > 10 || $rating < 0) 
+        {
+            $errors .= "\\n* Rating must be a decimal between 0 and 10(inclusive).  Enter 0 if unknown.";
+	} else if (empty ($rating)) {
+            $rating = 0;
+	}	
         if ($errors != "") {
             include '../view/editGame.php';
+        } else {
+            if ($mode == "Add") {
+		$gameID = insertGame($name, $genre, $publisher, $developer, $console, $releasedate, $isNew, $rating, $picture);
+            } else {
+		$rowsAffected = updateBeer($beerID, $name, $brewery, $style, $alcohol, $IBU, $local, $availableSince);
+            }
+            header("Location:../controller/controller.php?action=ShowGame&GameID=$gameID");
+            
 	}
 		
     }    
