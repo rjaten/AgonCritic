@@ -7,7 +7,7 @@
 	<tbody>	
             <tr>
                 <td>
-                    <img src=<?php echo $row['Picture']?> alt="<?php echo $row['Name']?>"> 
+                    <img src=<?php if(!is_null($row['Picture'])) {echo $row['Picture'];} else {echo '\'\'';} ?> alt="<?php echo $row['Name']?>"> 
                 </td>
                 <td>
                     Genre: <?php echo $row['Genre'] ?><br>
@@ -16,14 +16,12 @@
                     Console(s): <?php echo $row['Console'] ?><br>
                     Release Date: <?php echo $row['ReleaseDate'] ?><br>
                     Our Rating: <?php echo $row['Rating'] ?><br>
-                    <form>
-                        <button onclick="document.location='../controller/controller.php?action=EditGame&GameID=<?php echo $row['GameID']; ?>';"> 
+                        <button onclick="document.location= '../controller/controller.php?action=EditGame&GameID=<?php echo $row['Game_ID']; ?>';"> 
                             Edit
                         </button>
-                        <button style="margin-left: 15px"onclick="checkDelete()" >
+                        <button style="margin-left: 15px" onclick="checkDelete()" >
                             Delete
                         </button>
-                    </form>
 		</td>
             </tr>
 	</tbody>
@@ -35,8 +33,8 @@
     function checkDelete()
     {
         var isOkay = confirm("Are you sure you want to delete this game yo?");
-        if(isOkay == true)
-            document.location="../controller/controller.php?action=DeleteGame&GameID=<?php echo $row['GameID']; ?>";
+        if(isOkay)
+            document.location="../controller/controller.php?action=DeleteGame&GameID=<?php echo $row['Game_ID']; ?>";
         else
             return;
     }

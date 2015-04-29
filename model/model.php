@@ -139,7 +139,7 @@
 					Publisher = :Publisher, Developer = :Developer, Console = :Console,
 					ReleaseDate = :ReleaseDate, isNew = :isNew, Rating = :Rating,
                                         Picture = :Picture
-				  WHERE GameID = :GameID';
+				  WHERE Game_ID = :GameID';
 		$statement = $db->prepare($query);
 		$statement->bindValue(':GameID', $gameID);
 		$statement->bindValue(':Name', $name);
@@ -166,7 +166,7 @@
 		$db = getDBConnection();
 
 		$query = 'DELETE FROM games
-					 WHERE GameID = :GameID';
+					 WHERE Game_ID = :GameID';
 
 		$statement = $db->prepare($query);
 		$statement->bindValue(':GameID', $gameID);

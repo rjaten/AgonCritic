@@ -72,6 +72,7 @@ table {
 .indent2 {padding-left: 100px;}
 .fl {float: left;}
 .fr {float: right;}
+span {color:red;}
 
 .formRow label {
 	display: inline-block;

@@ -135,14 +135,19 @@
 	
         $gameID = $_POST['GameID'];
 	$mode = $_POST['Mode'];
-	$name = @$_POST['Name'];
-	$genre = @$_POST['Genre'];
-        $console = @$_POST['Console'];
-        $developer = @$_POST['Developer'];
-	$publisher = @$_POST['Publisher'];
-	$releasedate = @$_POST['ReleaseDate'];
-	$rating = @$_POST['Rating'];
-        $picture = '../images/' . $_POST['Picture'];
+	$name = $_POST['Name'];
+	$genre = $_POST['Genre'];
+        $console = $_POST['Console'];
+        $developer = $_POST['Developer'];
+	$publisher = $_POST['Publisher'];
+	$releasedate = $_POST['ReleaseDate'];
+	$rating = $_POST['Rating'];
+        if(!isset($_POST['Picture'])) {
+            $picture = "";
+        }
+        else {
+            $picture = '../images/' . $_POST['Picture'];
+        }
 	if (isset($_POST['isNew'])) {
             $isNew = 1;
 	} else {
@@ -170,6 +175,14 @@
         {
             $errors .= "\\n* Publisher must be no more than 100 characters.";
         }
+        
+        $imageFileType = pathinfo($picture,PATHINFO_EXTENSION);
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" && $picture != "")
+        {
+            $errors .= "\\n* Picture selected must be a jpg, jpeg, png, or gif file";
+        }
+        
         if (empty($releasedate) || !strtotime($releasedate)) 
         {
             $errors .= "\\n* You must provide a valid release date.";
@@ -186,7 +199,7 @@
             if ($mode == "Add") {
 		$gameID = insertGame($name, $genre, $publisher, $developer, $console, $releasedate, $isNew, $rating, $picture);
             } else {
-		$rowsAffected = updateBeer($beerID, $name, $brewery, $style, $alcohol, $IBU, $local, $availableSince);
+		$rowsAffected = updateGame($gameID, $name, $genre, $publisher, $developer, $console, $releasedate, $isNew, $rating, $picture);
             }
             header("Location:../controller/controller.php?action=ShowGame&GameID=$gameID");
             

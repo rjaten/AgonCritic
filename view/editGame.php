@@ -17,7 +17,7 @@
             
             <div class="formRow mA">
 		<label for="Game">Game Name:<span class="required">*</span></label>
-		<input type="file" name="Picture" id="" value="<?php echo $picture ?>" required/>
+		<input type="file" name="Picture" id="" value="<?php echo $picture ?>"/>
             </div>
             
             <div class="formRow">
