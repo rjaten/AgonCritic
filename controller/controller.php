@@ -47,6 +47,12 @@
         case 'Construction': 
             include '../view/Construction.html';
             break;
+        case 'ShowGames':
+            showGames();
+            break;
+        case 'ShowGame':
+            showGame();
+            break;
         default:
             include('../view/AgonHome.php');   // default
     }
@@ -177,5 +183,70 @@
             
 	}
         include '../view/processSignups.php';
+    }
+    
+    	function searchGames() 
+        {
+            $results = getAllBeers();
+            if (count($results) == 0) {
+		$errorMessage = "No beers found.";
+		include '../view/errorPage.php';
+            } else {
+		include '../view/searchBeers.php';
+            }		
+	}
+    
+    function showGame()
+    {
+        $gameID = $_GET['GameID'];
+	if (!isset($gameID)) {
+            $errorMessage = 'You must provide a game to display.';
+            include '../view/errorMessage.php';
+	} else {
+            $row = getGame($gameID);
+            if ($row == FALSE) {
+                $errorMessage = 'That game was not found.';
+		include '../view/errorMessage.php';
+            } else {
+                include '../view/showGame.php';
+            }
+	}
+    }
+    
+    function showGames() 
+    {
+        if(isset($_GET['ListType'])){
+            $listType = $_GET['ListType'];
+        } else {
+            $listType = 'ShowAll';
+        }
+        if(isset($_GET['Console'])){
+            $console = $_GET['Console'];
+        } else {
+            $console = '';
+        }
+        if(isset($_GET['Genre'])){
+            $genre = $_GET['Genre'];
+        } else {
+            $genre = '';
+        }
+	if ($listType == 'Console') {
+            $results = getConsole($console);
+	} else if ($listType == 'Genre') {
+            $results = getGenre($genre);
+	} else if ($listType == 'GeneralSearch') {
+            $results = getByGeneralSearch($_GET['Criteria']);
+	} else {
+            $results = getGames();
+	}
+	if (count($results) == 0) {
+            $errorMessage = "No games found.";
+            include '../view/errorMessage.php';
+	} else if (count($results) == 1) {
+            $row = $results[0];
+            include '../view/showGame.php';
+	} else {
+            include '../view/showGames.php';
+	}
     }
 ?>

@@ -38,8 +38,8 @@ body {
 
 .mainDiv {
     width: 80%;
-    background-color: #fff;
     margin: 0px auto 15px auto;
+    background: rgb(255,255,255);
 }
 
 .Construction {
@@ -70,3 +70,18 @@ table {
 .mA {margin:auto;}
 .indent1 {padding-left: 50px;}
 .indent2 {padding-left: 100px;}
+.fl {float: left;}
+.fr {float: right;}
+
+.formRow label {
+	display: inline-block;
+	width: 100px;
+	font-weight: bold;
+}
+.formRow {
+	padding-bottom: 10px;
+}
+th, td {
+	padding: 5px;
+}
+

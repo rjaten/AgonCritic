@@ -15,15 +15,16 @@
                     <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Games <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
+                            <li><a href="../controller/controller.php?action=ShowGames">View All</a></li>
                             <li> Genre</li>
-                            <li><a href="../controller/controller.php?action=Genre">Horror</a></li>
-                            <li><a href="../controller/controller.php?action=Construction">Action</a></li>
-                            <li><a href="../controller/controller.php?action=Construction">RPG</a></li>
+                            <li><a href="../controller/controller.php?action=ShowGames&ListType=Genre&Genre=Horror">Horror</a></li>
+                            <li><a href="../controller/controller.php?action=ShowGames&ListType=Genre&Genre=Action">Action</a></li>
+                            <li><a href="../controller/controller.php?action=ShowGames&ListType=Genre&Genre=RPG">RPG</a></li>
                             <li class="divider"></li>
-                            <li>Console</a</li>
-                            <li><a href="../controller/controller.php?action=Construction">Playstation 4</a></li>
-                            <li><a href="../controller/controller.php?action=Construction">Xbox One</a></li>
-                            <li><a href="../controller/controller.php?action=Construction">PC</a></li>
+                            <li>Console</li>
+                            <li><a href="../controller/controller.php?action=ShowGames&ListType=Console&Console=Playstation">Playstation</a></li>
+                            <li><a href="../controller/controller.php?action=ShowGames&ListType=Console&Console=Xbox">Xbox</a></li>
+                            <li><a href="../controller/controller.php?action=ShowGames&ListType=Console&Console=PC">PC</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -50,14 +51,22 @@
                             </ul>
                         </li>                
                     </ul>
-                        <form class="navbar-form navbar-left" role="search">
+                        <form class="navbar-form navbar-left" role="search" action="../controller/controller.php?action=SearchGames">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search"/>
+                                <input type="text" class="form-control" placeholder="Search Games" id="Criteria"/>
                             </div>
-                            <button type="submit" class="btn btn-default">Submit</button>
+                            <input type="button" class="btn btn-default" onclick="generalSearch()" value="Search"/>
                         </form>
                 <div class="rA">Subscribe now to our Newsletter! <a href="../controller/controller.php?action=Signup"><img src="../images/newsletter.png" alt="Newsletter!"/></a></div>
                     </div>
                 </div>
 </nav>
+
+<script>
+	function generalSearch(){
+		document.location = "../controller/controller.php?action=ShowGames&ListType=GeneralSearch&Criteria=" +  
+			encodeURIComponent($('#Criteria').val());
+	}
+	
+</script>
 
