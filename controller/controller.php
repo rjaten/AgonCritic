@@ -1,5 +1,6 @@
 <?php
     require_once '../model/model.php';
+    require_once '../lib/general_fns.php';
 
     if (isset($_POST['action'])) {  // check get and post
         $action = $_POST['action'];
@@ -32,6 +33,18 @@
         case 'Signup':
             include '../view/signup.php';
             break;
+        case 'AddGame':
+            addGame();
+            break;
+        case 'EditGame':
+            editGame();
+            break;
+        case 'DeleteGame':
+            deleteGame();
+            break;
+        case 'ProcessAddEdit':
+            processAddEdit();
+            break;
         case 'ProcessFileUpload': 
             processFileUpload();
             break;
@@ -56,7 +69,144 @@
         default:
             include('../view/AgonHome.php');   // default
     }
+    
+    function addGame() 
+    {
+	$mode = "Add";
+        $gameID = 0;
+	$name = "";
+	$genre = "";
+	$console = "";
+	$developer = "";
+	$publisher = "";
+        $rating = 0.0;
+	$isNew = "1";
+	$releasedate = "";
+		
+	include '../view/editGame.php';
+    }
+    
+    function deleteGame() {
+		$gameID = $_GET['GameID'];
+		if (!isset($gameID)) {
+			$errorMessage = 'You must provide a GameID to delete.';
+			include '../view/errorMessage.php';
+		} else {
+			$rowCount = deleteAGame($gameID);
+			if ($rowCount != 1) {
+				$errorMessage = "The delete affected $rowCount rows.";
+				include '../view/errorMessage.php';
+			} else {
+				header("Location:../controller/controller.php");
+			}
+		}
+		
+	}
+    
+    function editGame() {
+		$gameID = $_GET['GameID'];
+		if (!isset($gameID)) {
+			$errorMessage = 'You must provide a GameID to display.';
+			include '../view/errorMessage.php';
+		} else {
+			$row = getGame($gameID);
+			if ($row == FALSE) {
+				$errorMessage = 'That game was not found.';
+				include '../view/errorMessage.php';
+			} else {
+				$mode = "Edit";
+				$gameID = $row['GameID'];
+				$name = $row['Name'];
+				$genre = $row['Genre'];
+				$console = $row['Console'];
+				$developer = $row['Developer'];
+				$publisher = $row['Publisher'];
+				$rating = $row['Rating'];
+                                $isNew = $row['isNew'];
+				$releasedate = $row['ReleaseDate'];
+				
+				include '../view/editGame.php';
+			}
+		}		
+	}
+    
+    function processAddEdit() 
+    {
 	
+        $gameID = $_POST['GameID'];
+	$mode = $_POST['Mode'];
+	$name = $_POST['Name'];
+	$genre = $_POST['Genre'];
+        $console = $_POST['Console'];
+        $developer = $_POST['Developer'];
+	$publisher = $_POST['Publisher'];
+	$releasedate = $_POST['ReleaseDate'];
+	$rating = $_POST['Rating'];
+        if(!isset($_POST['Picture'])) {
+            $picture = "";
+        }
+        else {
+            $picture = '../images/' . $_POST['Picture'];
+        }
+	if (isset($_POST['isNew'])) {
+            $isNew = 1;
+	} else {
+            $isNew = 0;
+	}
+	// Validations
+	$errors = "";
+        if (!empty($name) && strlen($name) > 50) 
+        {
+            $errors .= "\\n* Name is required and must be no more than 50 characters.";
+        }
+        if (!empty($genre) && strlen($genre) > 100) 
+        {
+            $errors .= "\\n* Genre is required and must be no more than 100 characters.";
+        }
+        if (!empty($console) && strlen($console) > 100) 
+        {
+            $errors .= "\\n* Developer is required and must be no more than 100 characters.";
+        }
+        if (strlen($developer) > 100) 
+        {
+            $errors .= "\\n* Developer must be no more than 100 characters.";
+        }
+        if (strlen($publisher) > 100) 
+        {
+            $errors .= "\\n* Publisher must be no more than 100 characters.";
+        }
+        
+        $imageFileType = pathinfo($picture,PATHINFO_EXTENSION);
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" && $picture != "")
+        {
+            $errors .= "\\n* Picture selected must be a jpg, jpeg, png, or gif file";
+        }
+        
+        if (empty($releasedate) || !strtotime($releasedate)) 
+        {
+            $errors .= "\\n* You must provide a valid release date.";
+        }
+	if (!ctype_digit($rating) > 10 || $rating > 10 || $rating < 0) 
+        {
+            $errors .= "\\n* Rating must be a decimal between 0 and 10(inclusive).  Enter 0 if unknown.";
+	} else if (empty ($rating)) {
+            $rating = 0;
+	}	
+        if ($errors != "") {
+            include '../view/editGame.php';
+        } else {
+            if ($mode == "Add") {
+		$gameID = insertGame($name, $genre, $publisher, $developer, $console, $releasedate, $isNew, $rating, $picture);
+            } else {
+		$rowsAffected = updateGame($gameID, $name, $genre, $publisher, $developer, $console, $releasedate, $isNew, $rating, $picture);
+            }
+            header("Location:../controller/controller.php?action=ShowGame&GameID=$gameID");
+            
+	}
+		
+    }    
+        
     function processFileUpload()
     {
         $directory = "../uploads/";

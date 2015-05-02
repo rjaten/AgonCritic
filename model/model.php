@@ -109,6 +109,83 @@
             
         }
         
+        function insertGame($name, $genre, $publisher, $developer, $console, $releasedate, $isNew, $rating, $picture) {
+		$db = getDBConnection();
+		$query = "INSERT INTO games (Name, Genre, Publisher, Developer, Console, ReleaseDate, isNew, Rating, Picture)
+			VALUES (:Name, :Genre, :Publisher, :Developer, :Console, :ReleaseDate, :isNew, :Rating, :Picture)";
+		$statement = $db->prepare($query);
+		$statement->bindValue(':Name', $name);
+		$statement->bindValue(':Genre', $genre);
+		$statement->bindValue(':Publisher', $publisher);
+		$statement->bindValue(':Developer', $developer);
+		$statement->bindValue(':Console', $console);
+                $statement->bindValue(':ReleaseDate', toMySQLDate($releasedate));
+		$statement->bindValue(':isNew', $isNew);
+                $statement->bindValue(':Rating', $rating);
+                $statement->bindValue(':Picture', $picture);		
+		$success = $statement->execute();
+		$statement->closeCursor();
+
+		if ($success) {
+			return $db->lastInsertId();
+		} else {
+			logSQLError($statement->errorInfo());
+		}		
+	}
+	
+	function updateGame($gameID, $name, $genre, $publisher, $developer, $console, $releasedate, $isNew, $rating, $picture) {
+		$db = getDBConnection();
+		$query = 'UPDATE games SET Name = :Name, Genre = :Genre, 
+					Publisher = :Publisher, Developer = :Developer, Console = :Console,
+					ReleaseDate = :ReleaseDate, isNew = :isNew, Rating = :Rating,
+                                        Picture = :Picture
+				  WHERE Game_ID = :GameID';
+		$statement = $db->prepare($query);
+		$statement->bindValue(':GameID', $gameID);
+		$statement->bindValue(':Name', $name);
+		$statement->bindValue(':Genre', $genre);
+		$statement->bindValue(':Publisher', $publisher);
+		$statement->bindValue(':Developer', $developer);
+		$statement->bindValue(':Console', $console);
+		$statement->bindValue(':ReleaseDate', toMySQLDate($releasedate));
+                $statement->bindValue(':isNew', $isNew);
+                $statement->bindValue(':Rating', $rating);
+                $statement->bindValue(':Picture', $picture);
+                
+		$success = $statement->execute();
+		$statement->closeCursor();
+
+		if ($success) {
+			return $statement->rowCount();         // Number of rows affected
+		} else {
+			logSQLError($statement->errorInfo());  // Log error to debug
+		}		
+	}
+	
+	function deleteAGame($gameID){
+		$db = getDBConnection();
+
+		$query = 'DELETE FROM games
+					 WHERE Game_ID = :GameID';
+
+		$statement = $db->prepare($query);
+		$statement->bindValue(':GameID', $gameID);
+
+		$success = $statement->execute();
+		$statement->closeCursor();
+
+		if ($success) {
+			return $statement->rowCount(); // Number of rows affected
+		} else {
+			logSQLError($statement->errorInfo());  // Log error 
+		}		
+	}
+        
+        function logSQLError($errorInfo) {
+		$errorMessage = $errorInfo[2];
+		include '../view/errorMessage.php';
+	}
+        
         function saveEmailRecipient($firstName, $email)
         {
             $file = fopen('../DataFiles/subscribers.csv', 'a+b');
