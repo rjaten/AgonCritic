@@ -38,7 +38,14 @@
                     echo "$lines[$quoteRand]";
                 ?>
             </div>
-            <div class="login">Login | Signup</div>
+            <div class="login"><?php
+						if (!loggedIn()) {
+							echo "<a href='../security/index.php?action=SecurityLogin&RequestedPage=" . urlencode($_SERVER['REQUEST_URI'])  .  "'>Log In </a>";
+						}else {
+							echo "<a href='../security/index.php?action=SecurityLogOut&RequestedPage=" . urlencode($_SERVER['REQUEST_URI'])  .  "'>Log Out " . $_SESSION['UserName'] . " </a><a href='../security/index.php'>| Control Panel </a>";
+						}
+					?>
+            </div>
         </section> 
         <section class="randPic">
             <?php

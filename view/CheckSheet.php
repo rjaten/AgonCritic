@@ -4,179 +4,204 @@
 	<div id="wrapper">
 
 		<table width="100%" border="1">
-    <tr> 
-      <th>CIS 370 Assignment 3 Specific Requirement</td>s
-      <th>How to test this feature.</th>
-      <th>Works Completely<br />
+    <tbody><tr> 
+      <th>CIS 370 Assignment 4 Specific Requirements
+      </th><th>How to test this feature.</th>
+      <th>Works Completely<br>
         (Yes/No)</th>
     </tr>
     <tr> 
-      <td>1. Create a database using phpMyAdmin.</td>
-      <td>&nbsp;</td>
+      <td>1.	Create an interface to add new data to your database. </td>
+      <td>Games/Add A Game</td>
       <td>Yes</td>
     </tr>
+    <tr>
+      <td class="indent1">b. Provide appropriate HTML controls to input data
+        including textboxes, selection boxes, radio buttons, checkboxes, calendar
+      controls, etc.</td>
+      <td>&nbsp;</td>
+      <td>y</td>
+    </tr>
     <tr> 
-      <td class="indent1"> a. Include at least 6 columns (or fields) with a 
-          variety of data types including at least one of each of the following: 
-          character string, date, integer, decimal, and Yes/No values.
-        </td>
+      <td class="indent2">i. Include at least one selection box, checkbox (or
+      radio button), and date input (via text or date) on your input form.</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="indent2">ii. Require at least one field as a minimum to make
+      data valid.</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
     </tr>
     <tr> 
-      <td class="indent1">b. Add at least 15 rows of data into that table.</td>
+      <td class="indent2">iii.	Show a red * on form for required fields.</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="indent1">c. Validate all data on the client-side and server
+      side where appropriate.</td>
+      <td>&nbsp;</td>
+      <td>y</td>
+    </tr>
+    <tr>
+      <td class="indent1">d. Make sure you can enter special characters such
+        as single and double quotes, commas, ampersands, brackets, braces, and
+      angle-brackets into text fields without causing errors.</td>
+      <td>&nbsp;</td>
+      <td>y</td>
+    </tr>
+    <tr>
+      <td class="indent1">e. Dates should show and be entered in MM/DD/YYYY format
+      but be stored in the database as date fields.</td>
+      <td>&nbsp;</td>
+      <td>y</td>
+    </tr>
+    <tr>
+      <td class="indent1">f. After successful addition of a new entry, take them
+      to the details-view form.</td>
+      <td>&nbsp;</td>
+      <td>y</td>
+    </tr>
+    <tr>
+      <td class="indent1">g. If errors are found server-side, return them to
+        the add screen with any entered data visible and a message to indicate
+      all errors.</td>
+      <td>&nbsp;</td>
+      <td>y</td>
+    </tr>
+    <tr> 
+      <td>2.	Create an interface to edit data in your database.</td>
+      <td>Go to details of a game then click delete button</td>
+      <td>y</td>
+    </tr>
+    <tr>
+      <td class="indent1">b. Try to share as much code as possible with your
+      Add form.</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
     </tr>
     <tr> 
-      <td>2. All source files organized into proper MVC folders.</td>
-      <td>&nbsp;</td>
-      <td>Yes</td>
+      <td>3.	Provide an interface to delete data in your database.</td>
+      <td>Go to details of a game then click delete button</td>
+      <td>y</td>
     </tr>
+    <tr> 
+      <td class="indent1">b. Require the user to confirm the deletion and only
+      delete if they say so.</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td class="indent2">
+        i. If they cancel the deletion, leave them on the display
+          form.
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td>4.	Make your code portable.</td>
+      <td>&nbsp;</td>
+      <td>y</td>
+    </tr>
+    <tr> 
+      <td class="indent1">a. Protect against Cross Site Scripting attacks (HTML
+      injection).</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td class="indent1">b. Your code should work with or without gpc_magic_quotes
+      turned on.</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="3" bgcolor="#CCCCCC">
+        <div align="center"><strong><font size="+1">Security Features</font></strong></div>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td>6. Integrate a security mechanism into your application that supports
+      adding, changing, and deleting users, functions, and roles.</td>
+      <td>&nbsp;</td>
+      <td>y</td>
+    </tr>
+    <tr> 
+      <td class="indent1">a. Adapt the format of the code provided to fit into
+        your theme with your headers, footers, color schemes, and navigation
+      system.</td>
+      <td>&nbsp;</td>
+      <td>y</td>
+    </tr>
+    <tr> 
+      <td class="indent1">b. Include a mechanism in your navigation system to
+      support your security features.</td>
+      <td>&nbsp;</td>
+      <td>y</td>
+    </tr>
+    <tr>
+      <td class="indent2">i. Log In or Log Out should appear at the main menu
+      level.</td>
+      <td>top right</td>
+      <td>y</td>
+    </tr>
+   <tr>
+      <td class="indent2">ii. Redirect to use a secure connectin for the login screen.</td>
+      <td>&nbsp;</td>
+      <td>y</td>
+    </tr>
+    <tr> 
+      <td class="indent1">c. Set up users, functions, and roles appropriate for
+      your application.</td>
+      <td>&nbsp;</td>
+      <td>y</td>
+    </tr>
+    <tr> 
+      <td class="indent2">i.	Include an admin account with username “admin” and
+      password “admin” with full access.</td>
+      <td>&nbsp;</td>
+      <td>y</td>
+    </tr>
+    <tr> 
+      <td class="indent2">ii.	Include a read-only account with username of “reader” and
+      password of “reader”.</td>
+      <td>&nbsp;</td>
+      <td>y</td>
+    </tr>
+    <tr> 
+      <td class="indent1">d. Links for features that the current user does not
+      have access to should either not show or be disabled (if it is a button). </td>
+      <td>&nbsp;</td>
+      <td>y</td>
+    </tr>
+    <tr>
+      <td class="indent2">i.	This includes items in your navigation system.</td>
+      <td>&nbsp;</td>
+      <td>y</td>
+    </tr>
+    <tr> 
+      <td class="indent2">ii. If a user attempts to go directly to a page (perhaps
+        via a bookmark) and they are not currently logged in, and the page is
+        not available to guests, bring up the login page in-line and then forward
+      them on to their originally desired page.</td>
+      <td>&nbsp;</td>
+      <td>y</td>
+    </tr>
+  </tbody></table>
 
-    <tr> 
-      <td>3. Create a simple PHP page that will display a list of the most important 
-        columns for all rows in your table.</td>
-      <td>Games/View All</td>
-      <td>Yes</td>
-    </tr>
-    <tr> 
-      <td class="indent1">a. Use an HTML table to show your column headings and 
-        data values.</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr> 
-      <td class="indent1">b. Add formatting where appropriate for dates, phone 
-        numbers, SSNs, Y/N values, etc...</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr> 
-      <td>4. Make a page that allows the user to Search for subsets of your records.</td>
-      <td>Games/Genre or Console. Or use search bar on top of site.</td>
-      <td>Yes</td>
-    </tr>
-    <tr> 
-      <td class="indent1">a. Search using a Selection box with values pre-loaded 
-        in a logical order (like a dropdown of names in alphabetical order).</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr> 
-      <td class="indent1">b. A general search that searches all character fields 
-        for any subset of characters.</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr> 
-      <td class="indent1">c. Links to show natural subsets of the data (like &quot;Clearance 
-        Items&quot; or &quot;New Listings&quot;).</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr> 
-      <td class="indent1">d. Never show a list of only one item - automatically 
-        proceed to the details view if only one item is found.</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr> 
-      <td>5. Make a page that shows a Details view of a single row of your data.</td>
-      <td>Can click a picture or the game name text.</td>
-      <td>Yes</td>
-    </tr>
-    <tr> 
-      <td class="indent1">a. Listing screen should automatically link to this 
-        screen passing primary key as a querystring parameter.</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr> 
-      <td>6. Use PHP Data Objects instead of the mysql or mysqli interfaces to 
-        access your data.</td>
-      <td>&nbsp;</td>
-      <td>Yes</td>
-    </tr>
-    <tr> 
-      <td class="indent1">a. Use prepared statements to execute your parameterized 
-        queries to avoid SQL injection.</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr> 
-      <td>7. This sheet linked in to your site under the Help menu and filled 
-        out properly so I can grade it.</td>
-      <td>&nbsp;</td>
-      <td>Yes</td>
-    </tr>
-    <tr> 
-      <td>8. Complete site published to cisprod public_html folder (including 
-        redirection to this assignment).</td>
-      <td>&nbsp;</td>
-      <td>Yes</td>
-    </tr>
-    <tr> 
-      <td class="indent1">a. Create a .zip file of your whole site and turn it in to the appropriate folder on D2L.</td>
-      <td>&nbsp;</td>
-      <td>Yes</td>
-    </tr>
-    <tr> 
-      <td></td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr> 
-      <td colspan="3" bgcolor="#CCCCCC"> <div align="center"><strong><font size="+1">Extra 
-          Credit</font></strong></div></td>
-    </tr>
-    <tr> 
-      <td></td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr> 
-      <td>9. Include a mechanism to choose an initial sort order for the list entries whenever 
-        you search your records.</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr> 
-      <td class="indent1">a. The sort order should default to a natural (or common) 
-        value.</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr> 
-      <td class="indent1">b. The sort order should affect the results regardless 
-        of which mechanism they used to create the list.</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr> 
-      <td class="indent1">c. Avoid SQL Injection attacks in implementing your 
-        sort order selection.</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr> 
-      <td>10. Allow the user to click any of the column headers to sort the data 
-        shown and redisplay it</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr> 
-      <td class="indent1">a. Avoid SQL Injection attacks in implementing your 
-        sort order selection.</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr> 
-      <td>11.	Include an image for each row in your table and show the image in your details screen.</td>
-      <td>&nbsp;</td>
-      <td>Yes</td>
-    </tr>
-  </table>
 
 	</div>
 <?php

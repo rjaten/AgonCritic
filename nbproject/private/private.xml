@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/AgonCritic/view/navcontent.html</file>
-            <file>file:/C:/xampp/htdocs/AgonCritic/view/showGames.php</file>
+            <file>file:/C:/xampp/htdocs/AgonCritic/security/model.php</file>
             <file>file:/C:/xampp/htdocs/AgonCritic/controller/controller.php</file>
-            <file>file:/C:/xampp/htdocs/AgonCritic/view/showGame.php</file>
-            <file>file:/C:/xampp/htdocs/AgonCritic/model/model.php</file>
+            <file>file:/C:/xampp/htdocs/AgonCritic/security/index.php</file>
+            <file>file:/C:/xampp/htdocs/AgonCritic/view/headercontent.php</file>
+            <file>file:/C:/xampp/htdocs/AgonCritic/view/CheckSheet.php</file>
         </group>
     </open-files>
 </project-private>

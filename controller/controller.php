@@ -1,7 +1,11 @@
 <?php
+    ob_start();
+    session_start();
+    require_once("../security/model.php");
     require_once '../model/model.php';
     require_once '../lib/general_fns.php';
-
+    
+    unQuote();
     if (isset($_POST['action'])) {  // check get and post
         $action = $_POST['action'];
     } else if (isset($_GET['action'])) {
@@ -11,63 +15,71 @@
         exit();
     }
 
-    switch ($action) {
-        case 'About':
-            include '../view/AgonAbout.php';
-            break;
-        case 'SendEmails':
-            include '../view/sendEmails.php';
-            break;
-        case 'FileManagement':
-            include '../view/Admin.php';
-            break;
-        case 'Ideas':
-            include '../view/AgonIdeas.php';
-            break;
-        case 'CheckSheet':
-            include '../view/CheckSheet.php';
-            break;
-        case 'Genre':
-            include '../view/AgonGenre.html';
-            break;
-        case 'Signup':
-            include '../view/signup.php';
-            break;
-        case 'AddGame':
-            addGame();
-            break;
-        case 'EditGame':
-            editGame();
-            break;
-        case 'DeleteGame':
-            deleteGame();
-            break;
-        case 'ProcessAddEdit':
-            processAddEdit();
-            break;
-        case 'ProcessFileUpload': 
-            processFileUpload();
-            break;
-        case 'ProcessImageUpload': 
-            processImageUpload();
-            break;
-        case 'ProcessQuoteUpload': 
-            processQuoteUpload();
-            break;
-        case 'ProcessSignups':
-            processSignups();
-            break;
-        case 'Construction': 
-            include '../view/Construction.html';
-            break;
-        case 'ShowGames':
-            showGames();
-            break;
-        case 'ShowGame':
-            showGame();
-            break;
-        default:
-            include('../view/AgonHome.php');   // default
+    if (!userIsAuthorized($action)) {
+        if(!loggedIn()) {
+            header("Location:../security/index.php?action=SecurityLogin&RequestedPage=" . urlencode($_SERVER['REQUEST_URI']));
+        } else {
+            include('../security/not_authorized.html');
+        }
+    } else {
+        switch ($action) {
+            case 'About':
+                include '../view/AgonAbout.php';
+                break;
+            case 'SendEmails':
+                include '../view/sendEmails.php';
+                break;
+            case 'FileManagement':
+                include '../view/Admin.php';
+                break;
+            case 'Ideas':
+                include '../view/AgonIdeas.php';
+                break;
+            case 'CheckSheet':
+                include '../view/CheckSheet.php';
+                break;
+            case 'Genre':
+                include '../view/AgonGenre.html';
+                break;
+            case 'Signup':
+                include '../view/signup.php';
+                break;
+            case 'AddGame':
+                addGame();
+                break;
+            case 'EditGame':
+                editGame();
+                break;
+            case 'DeleteGame':
+                deleteGame();
+                break;
+            case 'ProcessAddEdit':
+                processAddEdit();
+                break;
+            case 'ProcessFileUpload': 
+                processFileUpload();
+                break;
+            case 'ProcessImageUpload': 
+                processImageUpload();
+                break;
+            case 'ProcessQuoteUpload': 
+                processQuoteUpload();
+                break;
+            case 'ProcessSignups':
+                processSignups();
+                break;
+            case 'Construction': 
+                include '../view/Construction.html';
+                break;
+            case 'ShowGames':
+                showGames();
+                break;
+            case 'ShowGame':
+                showGame();
+                break;
+            default:
+                include('../view/AgonHome.php');   // default
+        }
     }
     
     function addGame() 
@@ -115,7 +127,7 @@
 				include '../view/errorMessage.php';
 			} else {
 				$mode = "Edit";
-				$gameID = $row['GameID'];
+				$gameID = $row['Game_ID'];
 				$name = $row['Name'];
 				$genre = $row['Genre'];
 				$console = $row['Console'];
